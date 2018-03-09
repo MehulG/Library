@@ -13,10 +13,13 @@
     <!-- Bootstrap core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="./home.js"></script>
+
+
     <!-- Custom styles for this template -->
     <link href="./css/shop-item.css" rel="stylesheet">
 
-    <script src="./home.js"></script>
 
   </head>
 
@@ -50,8 +53,8 @@
             <ul style="list-style:none">
                     <li><input type="checkbox" name="" id=""> asddsas</li>
             </ul>
-            <button id="sub1" class="btn btn-success">Submit1</button>
-            <button id="sub2" class="btn btn-success">Submit2</button>
+            <button id="sub1" class="btn btn-success">Search</button>
+            <button id="sub2" class="btn btn-success">Clear</button>
 
           </div>
         </div>
@@ -62,18 +65,8 @@
 
           <div class="card card-outline-secondary my-4">
             
-            <div class="card-body">
-                    <a href="">A</a>
-                    <a href="">A</a>
-                    <a href="">A</a>
-                    <a href="">A</a>
-                    <a href="">A</a>
-                    <a href="">A</a>
-                    <a href="">A</a>
-                    <a href="">A</a>
-
-                    <p id="total" style="float:right"></p>
-                    <p style="float:right">Total Results: </p>
+            <div class="card-body" id="top">
+              <p style="float:right" id="total">Total Results: </p>
             </div>  
 
             <div class="card-header">
@@ -88,7 +81,7 @@
                                 <th>Subject</th>
                             </tr>
             
-                            <tr>
+                            <!-- <tr>
                                 <td>1</td>
                                 <td><a href="">Accounts of Chemical Research</a> </td>
                                 <td><a href="">Accounts of Chemical Research</a> </td>
@@ -96,15 +89,16 @@
                                 <td><a href="">1996</a></td>
                                 <td><a href="">Accounts of Chemical Research</a> </td>
                                 <td><a href="">ACS</a></td>
-                            </tr>
+                            </tr> -->
                         </table>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="pages">
                     <a href="">A</a>
                     <a href="">A</a>
                     <a href="">A</a>
                     <a href="">A</a>
                     <a href="">A</a>
+                    <button>as</button>
             </div>          
             <!-- <div class="card-body">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
@@ -132,7 +126,6 @@
     <!-- Footer -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="./vendor/jquery/jquery.min.js"></script>
     <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>   
