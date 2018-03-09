@@ -1,16 +1,17 @@
 $(document).ready(function(){
-    $(".btn").click(function(){
+    $(".btn").on('click',function(e){
+        e.preventDefault();
             var uname = $('input:text').val();
             var pwd = $('input:password').val();
-            console.log(uname);
-            
-            $.post("url",
+            $.post("./signin.php",
             {
-                name: uname,
+                username: uname,
                 password: pwd
             },
             function(data,status){
-
+                    alert(data);
+                    if(data=='login successful')
+                    window.location.href="../admin";
             });
         });
     });
