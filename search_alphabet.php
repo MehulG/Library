@@ -18,10 +18,9 @@
       $v=notEmpty($_GET,"type","query");
       if(empty($v["error"]))
       {
-        $_GET['query']='%'.$_GET['query'].'%';
-        $query="SELECT * FROM books WHERE ".$_GET['type']." LIKE ? ORDER BY ".$_GET['type'];
-        $stmt=$con->prepare($query) or die(mysqli_error($con));
-        $stmt->bind_param("s",$_GET['query']) or die("Failed to connect to server: " . mysqli_error($con));
+        $_GET['char']=$_GET['char'].'%';
+          $stmt=$con->prepare("SELECT * FROM books WHERE title LIKE ? ORDER BY title") or die(mysqli_error($con));
+          $stmt->bind_param("s",$_GET['char']) or die("Failed to connect to server: " . mysqli_error($con));
           $stmt->execute() or die("Failed to connect to MySQL: " . mysqli_error($con));
           $result=$stmt->get_result() or die("Failed to connect to MySQL: " . mysqli_error($con));
           $total_count = mysqli_num_rows($result);
@@ -43,4 +42,5 @@
     }
       else
           echo json_encode($v);
+
           ?>
