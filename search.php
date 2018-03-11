@@ -33,10 +33,12 @@
             for($j=0;$j<25;$j++)
             $row = $result->fetch_array(MYSQLI_ASSOC);
           }
-            while($row = $result->fetch_array(MYSQLI_ASSOC))
+          $i=0;
+            while($row = $result->fetch_array(MYSQLI_ASSOC) && $i<25){
                     array_push($search_result,$row);
+                    $i=$i+1;
+            }
             echo json_encode($search_result);
-            
     }
       else
           echo json_encode($v);
