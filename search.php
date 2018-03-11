@@ -19,11 +19,20 @@
       if(empty($v["error"]))
       {
         $_GET['query']='%'.$_GET['query'].'%';
-          $stmt=$con->prepare("SELECT * FROM books WHERE ? LIKE ?") or die(mysqli_error($con));
+          $stmt=$con->prepare("SELECT * FROM books WHERE ? LIKE ? ORDER BY title") or die(mysqli_error($con));
           $stmt->bind_param("ss",$_GET['type'],$_GET['query']) or die("Failed to connect to server: " . mysqli_error($con));
           $stmt->execute() or die("Failed to connect to MySQL: " . mysqli_error($con));
           $result=$stmt->get_result() or die("Failed to connect to MySQL: " . mysqli_error($con));
-          $search_result=array();
+          $total_count = mysqli_num_rows($result);
+          $search_result=array("count"=>$total_count);
+          if(empty($_GET['page']))
+          $count=0;
+          else
+          $count=$_GET['page'];
+          for($i=1;$i<$count;$i++){
+            for($j=0;$j<25;$j++)
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+          }
             while($row = $result->fetch_array(MYSQLI_ASSOC))
                     array_push($search_result,$row);
             echo json_encode($search_result);
