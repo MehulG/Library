@@ -5,7 +5,7 @@ include "./jsgrid-php-master/models/ClientRepository.php";
 $clients = new ClientRepository($con);
 
 $key=array("sn","issn","callno","title","author","publisher","place","year","accessible_from","accessible_upto","url","subject","notes","accessionNo");
-$file = fopen("contacts.csv","r");
+$file = fopen("database.csv","r");
 while(! feof($file))
   {
   $book=fgetcsv($file);
@@ -28,5 +28,6 @@ while(! feof($file))
   }
 
 fclose($file);
+unlink("database.csv");
 
 ?>

@@ -2,7 +2,7 @@
     session_start();
 	$_SESSION["host"] = "localhost";
 	$_SESSION["db_user"] = "root";
-	$_SESSION["db_password"] = "qwerty";
+	$_SESSION["db_password"] = "";
     $_SESSION["db_name"]="library";
     $con=mysqli_connect($_SESSION["host"],$_SESSION["db_user"],$_SESSION["db_password"]) or die("Failed to connect to MySQL: " . mysqli_error($con));
     mysqli_select_db($con,$_SESSION["db_name"]) or die("Failed to connect to MySQL: " . mysqli_error());
