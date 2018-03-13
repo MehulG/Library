@@ -16,8 +16,8 @@
 }
     require "db_connect.php";
       $v=notEmpty($_GET,"type","query");
-      if(empty($v["error"]))
-      {
+      // if(empty($v["error"]))
+      // {
         $_GET['char']=$_GET['char'].'%';
           $stmt=$con->prepare("SELECT * FROM books WHERE title LIKE ? ORDER BY title") or die(mysqli_error($con));
           $stmt->bind_param("s",$_GET['char']) or die("Failed to connect to server: " . mysqli_error($con));
@@ -34,13 +34,16 @@
             $row = $result->fetch_array(MYSQLI_ASSOC);
           }
           $i=0;
-            while($row = $result->fetch_array(MYSQLI_ASSOC) && $i<25){
-                    array_push($search_result,$row);
-                    $i=$i+1;
-            }
+          $book = array();
+          while(($row = $result->fetch_array(MYSQLI_ASSOC)) && $i<25){
+              //print_r($row);
+                  array_push($book,$row);
+                  $i=$i+1;
+          }
+          array_push($search_result, $book);
             echo json_encode($search_result);
-    }
-      else
-          echo json_encode($v);
+    // }
+    //   else
+    //       echo json_encode($v);
 
           ?>

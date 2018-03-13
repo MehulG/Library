@@ -29,3 +29,7 @@ body {
   -webkit-text-decoration-skip: objects;
   border: none;
 }
+#select{
+  margin: 1em;
+  margin-left: 0;
+}

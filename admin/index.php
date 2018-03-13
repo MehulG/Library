@@ -11,12 +11,19 @@ header("Location:../login");
     <link href="jsgrid-php-master/public/css/style.css" rel="stylesheet" />
     <link href="./jsgrid/dist/jsgrid.min.css" rel="stylesheet" />
     <link href="./jsgrid/dist/jsgrid-theme.min.css" rel="stylesheet" />
-    <title>JSGrid and PHP Sample</title>
+    <title>JSGrid and PHP </title>
+    <link rel="stylesheet" href="./../home/vendor/bootstrap/css/bootstrap.css">
 </head>
 <body>
 <header>
-    <h1>JSGrid and PHP Sample</h1>
+    <h1>JSGrid and PHP </h1>
 </header>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+    <button style='float:right; border-width:2px;border-color:black; padding:0.3em; margin-bottom:0.5em;'> download </button>
+</form>
 
 <div id="jsGrid"></div>
 

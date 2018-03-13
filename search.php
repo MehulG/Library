@@ -16,8 +16,8 @@
 }
     require "db_connect.php";
       $v=notEmpty($_GET,"type","query");
-      if(empty($v["error"]))
-      {
+      //if(empty($v["error"]))
+      //{
         $_GET['query']='%'.$_GET['query'].'%';
         $query="SELECT * FROM books WHERE ".$_GET['type']." LIKE ? ORDER BY ".$_GET['type'];
         $stmt=$con->prepare($query) or die(mysqli_error($con));
@@ -35,12 +35,15 @@
             $row = $result->fetch_array(MYSQLI_ASSOC);
           }
           $i=0;
-            while($row = $result->fetch_array(MYSQLI_ASSOC) && $i<25){
-                    array_push($search_result,$row);
+          $book = array();
+            while(($row = $result->fetch_array(MYSQLI_ASSOC)) && $i<25){
+                //print_r($row);
+                    array_push($book,$row);
                     $i=$i+1;
             }
+            array_push($search_result, $book);
             echo json_encode($search_result);
-    }
-      else
-          echo json_encode($v);
+    //}
+      // else
+      //     echo json_encode($v);
           ?>
