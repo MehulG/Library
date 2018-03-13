@@ -68,7 +68,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
     case "DELETE":
         parse_str(file_get_contents("php://input"), $_DELETE);
 
-        $result = $clients->remove(intval($_DELETE["sn"]));
+        $result = $clients->remove($_DELETE["sn"]);
         break;
 }
 
