@@ -37,7 +37,7 @@ $(function() {
                 deleteItem: function(item) {
                     return $.ajax({
                         type: "DELETE",
-                        url: "inno/jsgrid-php-master/clients/index.php",
+                        url: "jsgrid-php-master/clients/index.php",
                         data: item
                     });
                 }
