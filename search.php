@@ -19,7 +19,14 @@
       //if(empty($v["error"]))
       //{
         $_GET['query']='%'.$_GET['query'].'%';
-        $query="SELECT * FROM books WHERE ".$_GET['type']." LIKE ? ORDER BY ".$_GET['type'];
+        $query="SELECT * FROM books WHERE ".$_GET['type']." LIKE ?";
+		if(!empty($_GET['publication'])){
+			$publishers_array=json_decode($_GET['publication'],true);
+			$publishers="'".implode("','",$publishers_array)."'";
+			$q=' AND Publisher in ('.$publishers.')';
+			$query=$query.$q;
+			}
+		$query=$query.' ORDER BY '.$_GET["type"];
         $stmt=$con->prepare($query) or die(mysqli_error($con));
         $stmt->bind_param("s",$_GET['query']) or die("Failed to connect to server: " . mysqli_error($con));
           $stmt->execute() or die("Failed to connect to MySQL: " . mysqli_error($con));
