@@ -30,6 +30,22 @@ $(document).ready(function(){
     }});
 
 
+    $.ajax({url: "./../publisher.php",data : {type: "title", query : ""}, success: function(result){
+
+        var ret = JSON.parse(result);
+        // ret.pop();
+        console.log(ret);
+        ret.forEach(element => {
+            if(element!=null){
+                console.log(element);
+                $('#publisher').append(`<li><input type="checkbox"  class = "pub" name="`+element+`"> `+element+`</li>`)
+              }         
+        });    
+        
+
+    }});
+
+
 //     functions
 
 
@@ -37,17 +53,30 @@ $(document).ready(function(){
     $("#sub1").click(function(){
         
         var select = $('#select').val();
-        console.log(select);
+        // console.log(select);
         
         var subj = $('#s_subject').val();
         $('.temp').remove();
+
+
+        //array of publishers checked
+        var publisher = [];
+        $('.pub').each(function(){
+            if($(this).prop('checked') == true){
+               console.log($(this).attr('name'));
+               publisher.push($(this).attr('name'));
+                
+            }
+        });
+        console.log(publisher);
         
         
-        $.ajax({url: "./../search.php",data : {type: select, query : subj}, success: function(result){
+        
+        $.ajax({url: "./../search.php",data : {type: select, query : subj, Publisher : publisher}, success: function(result){
 
             var ret = JSON.parse(result);
             
-            console.log(ret.count);
+            // console.log(ret.count);
     
             ret[0].forEach(element => {            
                 $("#main_table").append(`<tr class='temp'><td>`+element.ISSN+`</td><td><a href="">`+ element.Title +`</a> </td><td><a href="">`+element.Publisher+`</a> </td><td><a href="">`+element.Accessible_from+`</a> </td><td><a href="">`+element.Accessible_upto+`</a></td><td><a href="`+element.URL+`">`+element.URL+`</a></td><td><a href="">`+element.Subject+`</a></td></tr>`);
@@ -76,10 +105,22 @@ $(document).ready(function(){
         $('#s_subject').val('');
         $('.temp').remove();
 
-        $.ajax({url: "./../search.php",data : {type: 'title', query : ''}, success: function(result){
+//unchecking checkbox
+        $('.pub').each(function(){
+            $(this).prop('checked',false);
+        });
+
+//adding all publishers into array
+
+var publisher = [];
+    $('.pub').each(function(){
+       publisher.push($(this).attr('name'));
+    });
+
+        $.ajax({url: "./../search.php",data : {type: 'title', query : '', Publisher : publisher}, success: function(result){
             var ret = JSON.parse(result);
 
-            console.log(ret.count);
+            // console.log(ret.count);
     
             ret[0].forEach(element => {            
                 $("#main_table").append(`<tr class='temp'><td>`+element.ISSN+`</td><td><a href="">`+ element.Title +`</a> </td><td><a href="">`+element.Publisher+`</a> </td><td><a href="">`+element.Accessible_from+`</a> </td><td><a href="">`+element.Accessible_upto+`</a></td><td><a href="`+element.URL+`">`+element.URL+`</a></td><td><a href="">`+element.Subject+`</a></td></tr>`);
@@ -108,7 +149,7 @@ $(document).ready(function(){
         $.ajax({url: "./../search.php",data : {type: select, query : subj, page: Page_no}, success: function(result){
             var ret = JSON.parse(result);
 
-            console.log(ret.count);
+            // console.log(ret.count);
     
             ret[0].forEach(element => {            
                 $("#main_table").append(`<tr class='temp'><td>`+element.ISSN+`</td><td><a href="">`+ element.Title +`</a> </td><td><a href="">`+element.Publisher+`</a> </td><td><a href="">`+element.Accessible_from+`</a> </td><td><a href="">`+element.Accessible_upto+`</a></td><td><a href="`+element.URL+`">`+element.URL+`</a></td><td><a href="">`+element.Subject+`</a></td></tr>`);
@@ -131,7 +172,7 @@ $(document).ready(function(){
 //alphabetical
 $('#top').children('button').click(function(){
     var alphabet = $(this).html();
-    console.log(alphabet);
+    // console.log(alphabet);
     $('.temp').remove();
     var select = $('#select').val();
 
@@ -140,7 +181,7 @@ $('#top').children('button').click(function(){
     $.ajax({url: "./../search_alphabet.php",data : {type: select, query : "", char: alphabet, page: ""}, success: function(result){
         var ret = JSON.parse(result);
 
-        console.log(ret.count);
+        // console.log(ret.count);
 
         ret[0].forEach(element => {            
             $("#main_table").append(`<tr class='temp'><td>`+element.ISSN+`</td><td><a href="">`+ element.Title +`</a> </td><td><a href="">`+element.Publisher+`</a> </td><td><a href="">`+element.Accessible_from+`</a> </td><td><a href="">`+element.Accessible_upto+`</a></td><td><a href="`+element.URL+`">`+element.URL+`</a></td><td><a href="">`+element.Subject+`</a></td></tr>`);
