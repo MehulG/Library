@@ -20,11 +20,7 @@ $(document).ready(function(){
         $('#top').append(`<p class='temp'>Total results: `+ total_res +`</p>`)
         var no_of_pages = Math.ceil(total_res/25);
         for(var i=1; i<=no_of_pages; i++){
-            if (i!=total_res) {
-                $('#pages').append(`<button value = "`+(i)+`"class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
-            }else{
-                $('#pages').append(i);                        
-            }
+                $('#pages').append(`<button value = "`+(i)+`" class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                       
         }
 
     }});
@@ -75,7 +71,7 @@ $(document).ready(function(){
         $.ajax({url: "./../search.php",data : {type: select, query : subj, publication : publisher}, success: function(result){
             console.log(result);
             
-            //var ret = JSON.parse(result);
+            var ret = JSON.parse(result);
             
             // console.log(ret.count);
     
@@ -86,11 +82,8 @@ $(document).ready(function(){
             $('#top').append(`<p class='temp'>Total results: `+ total_res +`</p>`)
             var no_of_pages = Math.ceil(total_res/25);
             for(var i=1; i<=no_of_pages; i++){
-                if (i!=total_res) {
-                    $('#pages').append(`<button value = "`+(i)+`"class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
-                }else{
-                    $('#pages').append(i);                        
-                }
+                    $('#pages').append(`<button value = "`+(i)+`" class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
+
             }
         }});
 
@@ -113,10 +106,7 @@ $(document).ready(function(){
 
 //adding all publishers into array
 
-var publisher = [];
-    $('.pub').each(function(){
-       publisher.push($(this).attr('name'));
-    });
+        var publisher = [];
 
         $.ajax({url: "./../search.php",data : {type: 'title', query : '', publication : publisher}, success: function(result){
             var ret = JSON.parse(result);
@@ -130,20 +120,10 @@ var publisher = [];
             $('#top').append(`<p class='temp'>Total results: `+ total_res +`</p>`)
             var no_of_pages = Math.ceil(total_res/25);
             for(var i=1; i<=no_of_pages; i++){
-                if (i!=total_res) {
-                    $('#pages').append(`<button value = "`+(i)+`"class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
-                }else{
-                    $('#pages').append(i);                        
-                }
+                    $('#pages').append(`<button value = "`+(i)+`" class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
             }
         }});
     });
-
-//different page
-$('#pages').children('button').click(function(){
-});
-
-
 
 //alphabetical
 $('#top').children('button').click(function(){
@@ -167,20 +147,11 @@ $('#top').children('button').click(function(){
         $('#top').append(`<p class='temp'>Total results: `+ total_res +`</p>`)
         var no_of_pages = Math.ceil(total_res/25);
         for(var i=1; i<=no_of_pages; i++){
-            if (i!=total_res) {
-                $('#pages').append(`<button value = "`+(i)+`"class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
-            }else{
-                $('#pages').append(`<p class='temp'> `+i+`<\p>`);                        
-            }
+                $('#pages').append(`<button value = "`+(i)+`" class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
         }
     }});
 });
 
-
-$('#pages').children('button').click(function(){
-    console.log(123);
-    
-});
 
 
 });
@@ -207,11 +178,7 @@ function new_page(val){
         $('#top').append(`<p class='temp'>Total results: `+ total_res +`</p>`)
         var no_of_pages = Math.ceil(total_res/25);
         for(var i=1; i<=no_of_pages; i++){
-            if (i!=total_res) {
-                $('#pages').append(`<button value = "`+(i)+`"class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
-            }else{
-                $('#pages').append(i);                        
-            }
+                $('#pages').append(`<button value = "`+(i)+`" class = "temp" onclick="new_page(this.value)">`+i+`</button>`);                        
         }
     }});
 

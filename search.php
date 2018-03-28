@@ -21,7 +21,7 @@
         $_GET['query']='%'.$_GET['query'].'%';
         $query="SELECT * FROM books WHERE ".$_GET['type']." LIKE ?";
 		if(!empty($_GET['publication'])){
-			$publishers_array=json_decode($_GET['publication'],true);
+			$publishers_array=json_decode(json_encode($_GET['publication']),true);
 			$publishers="'".implode("','",$publishers_array)."'";
 			$q=' AND Publisher in ('.$publishers.')';
 			$query=$query.$q;
